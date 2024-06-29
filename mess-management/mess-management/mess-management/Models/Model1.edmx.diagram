@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="acc1340bd6a24f33a82b393a28b70919" Name="Diagram1" ZoomLevel="41">
+        <EntityTypeShape EntityType="MessModel.Admin" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MessModel.Cost" Width="1.5" PointX="5.25" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MessModel.InventoryAssignment" Width="1.5" PointX="8.25" PointY="16.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MessModel.Manager" Width="1.5" PointX="3" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MessModel.MealCount" Width="1.5" PointX="8.25" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MessModel.MealDeposit" Width="1.5" PointX="8.25" PointY="19.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MessModel.Mess" Width="1.5" PointX="0.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MessModel.User" Width="1.5" PointX="3" PointY="23.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MessModel.UtilityBill" Width="1.5" PointX="7.5" PointY="23.5" IsExpanded="true" />
+        <AssociationConnector Association="MessModel.FK__Cost__messId__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="MessModel.FK__Cost__userId__4CA06362" ManuallyRouted="false" />
+        <AssociationConnector Association="MessModel.FK__UtilityBi__costI__534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="MessModel.FK__Inventory__messI__4F7CD00D" ManuallyRouted="false" />
+        <AssociationConnector Association="MessModel.FK__Inventory__userI__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="MessModel.FK__Manager__messId__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="MessModel.FK__MealCount__messI__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="MessModel.FK__MealCount__userI__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="MessModel.FK__MealDepos__messI__47DBAE45" ManuallyRouted="false" />
+        <AssociationConnector Association="MessModel.FK__MealDepos__userI__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="MessModel.FK__User__messId__3D5E1FD2" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

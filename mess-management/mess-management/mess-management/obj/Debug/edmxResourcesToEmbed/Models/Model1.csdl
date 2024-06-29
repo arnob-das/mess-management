@@ -1,0 +1,295 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MessModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="adminId" />
+    </Key>
+    <Property Name="adminId" Type="Int32" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Cost">
+    <Key>
+      <PropertyRef Name="costId" />
+    </Key>
+    <Property Name="costId" Type="Int32" Nullable="false" />
+    <Property Name="messId" Type="Int32" />
+    <Property Name="userId" Type="Int32" />
+    <Property Name="totalCost" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Mess" Relationship="Self.FK__Cost__messId__4BAC3F29" FromRole="Cost" ToRole="Mess" />
+    <NavigationProperty Name="User" Relationship="Self.FK__Cost__userId__4CA06362" FromRole="Cost" ToRole="User" />
+    <NavigationProperty Name="UtilityBills" Relationship="Self.FK__UtilityBi__costI__534D60F1" FromRole="Cost" ToRole="UtilityBill" />
+  </EntityType>
+  <EntityType Name="InventoryAssignment">
+    <Key>
+      <PropertyRef Name="iaId" />
+    </Key>
+    <Property Name="iaId" Type="Int32" Nullable="false" />
+    <Property Name="messId" Type="Int32" />
+    <Property Name="userId" Type="Int32" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Mess" Relationship="Self.FK__Inventory__messI__4F7CD00D" FromRole="InventoryAssignment" ToRole="Mess" />
+    <NavigationProperty Name="User" Relationship="Self.FK__Inventory__userI__5070F446" FromRole="InventoryAssignment" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Manager">
+    <Key>
+      <PropertyRef Name="managerId" />
+    </Key>
+    <Property Name="managerId" Type="Int32" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="messId" Type="Int32" />
+    <NavigationProperty Name="Mess" Relationship="Self.FK__Manager__messId__412EB0B6" FromRole="Manager" ToRole="Mess" />
+  </EntityType>
+  <EntityType Name="MealCount">
+    <Key>
+      <PropertyRef Name="mealId" />
+    </Key>
+    <Property Name="mealId" Type="Int32" Nullable="false" />
+    <Property Name="messId" Type="Int32" />
+    <Property Name="userId" Type="Int32" />
+    <Property Name="mealNum" Type="Int32" Nullable="false" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Mess" Relationship="Self.FK__MealCount__messI__440B1D61" FromRole="MealCount" ToRole="Mess" />
+    <NavigationProperty Name="User" Relationship="Self.FK__MealCount__userI__44FF419A" FromRole="MealCount" ToRole="User" />
+  </EntityType>
+  <EntityType Name="MealDeposit">
+    <Key>
+      <PropertyRef Name="depositId" />
+    </Key>
+    <Property Name="depositId" Type="Int32" Nullable="false" />
+    <Property Name="messId" Type="Int32" />
+    <Property Name="userId" Type="Int32" />
+    <Property Name="amount" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Mess" Relationship="Self.FK__MealDepos__messI__47DBAE45" FromRole="MealDeposit" ToRole="Mess" />
+    <NavigationProperty Name="User" Relationship="Self.FK__MealDepos__userI__48CFD27E" FromRole="MealDeposit" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Mess">
+    <Key>
+      <PropertyRef Name="messId" />
+    </Key>
+    <Property Name="messId" Type="Int32" Nullable="false" />
+    <Property Name="messName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="messLocation" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Costs" Relationship="Self.FK__Cost__messId__4BAC3F29" FromRole="Mess" ToRole="Cost" />
+    <NavigationProperty Name="InventoryAssignments" Relationship="Self.FK__Inventory__messI__4F7CD00D" FromRole="Mess" ToRole="InventoryAssignment" />
+    <NavigationProperty Name="Managers" Relationship="Self.FK__Manager__messId__412EB0B6" FromRole="Mess" ToRole="Manager" />
+    <NavigationProperty Name="MealCounts" Relationship="Self.FK__MealCount__messI__440B1D61" FromRole="Mess" ToRole="MealCount" />
+    <NavigationProperty Name="MealDeposits" Relationship="Self.FK__MealDepos__messI__47DBAE45" FromRole="Mess" ToRole="MealDeposit" />
+    <NavigationProperty Name="Users" Relationship="Self.FK__User__messId__3D5E1FD2" FromRole="Mess" ToRole="User" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="userId" />
+    </Key>
+    <Property Name="userId" Type="Int32" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="messId" Type="Int32" />
+    <NavigationProperty Name="Costs" Relationship="Self.FK__Cost__userId__4CA06362" FromRole="User" ToRole="Cost" />
+    <NavigationProperty Name="InventoryAssignments" Relationship="Self.FK__Inventory__userI__5070F446" FromRole="User" ToRole="InventoryAssignment" />
+    <NavigationProperty Name="MealCounts" Relationship="Self.FK__MealCount__userI__44FF419A" FromRole="User" ToRole="MealCount" />
+    <NavigationProperty Name="MealDeposits" Relationship="Self.FK__MealDepos__userI__48CFD27E" FromRole="User" ToRole="MealDeposit" />
+    <NavigationProperty Name="Mess" Relationship="Self.FK__User__messId__3D5E1FD2" FromRole="User" ToRole="Mess" />
+  </EntityType>
+  <EntityType Name="UtilityBill">
+    <Key>
+      <PropertyRef Name="utilityId" />
+    </Key>
+    <Property Name="utilityId" Type="Int32" Nullable="false" />
+    <Property Name="utilityName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="utilityDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="cost" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="costId" Type="Int32" />
+    <NavigationProperty Name="Cost1" Relationship="Self.FK__UtilityBi__costI__534D60F1" FromRole="UtilityBill" ToRole="Cost" />
+  </EntityType>
+  <Association Name="FK__Cost__messId__4BAC3F29">
+    <End Role="Mess" Type="Self.Mess" Multiplicity="0..1" />
+    <End Role="Cost" Type="Self.Cost" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mess">
+        <PropertyRef Name="messId" />
+      </Principal>
+      <Dependent Role="Cost">
+        <PropertyRef Name="messId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Cost__userId__4CA06362">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Cost" Type="Self.Cost" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="Cost">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UtilityBi__costI__534D60F1">
+    <End Role="Cost" Type="Self.Cost" Multiplicity="0..1" />
+    <End Role="UtilityBill" Type="Self.UtilityBill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cost">
+        <PropertyRef Name="costId" />
+      </Principal>
+      <Dependent Role="UtilityBill">
+        <PropertyRef Name="costId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Inventory__messI__4F7CD00D">
+    <End Role="Mess" Type="Self.Mess" Multiplicity="0..1" />
+    <End Role="InventoryAssignment" Type="Self.InventoryAssignment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mess">
+        <PropertyRef Name="messId" />
+      </Principal>
+      <Dependent Role="InventoryAssignment">
+        <PropertyRef Name="messId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Inventory__userI__5070F446">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="InventoryAssignment" Type="Self.InventoryAssignment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="InventoryAssignment">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Manager__messId__412EB0B6">
+    <End Role="Mess" Type="Self.Mess" Multiplicity="0..1" />
+    <End Role="Manager" Type="Self.Manager" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mess">
+        <PropertyRef Name="messId" />
+      </Principal>
+      <Dependent Role="Manager">
+        <PropertyRef Name="messId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MealCount__messI__440B1D61">
+    <End Role="Mess" Type="Self.Mess" Multiplicity="0..1" />
+    <End Role="MealCount" Type="Self.MealCount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mess">
+        <PropertyRef Name="messId" />
+      </Principal>
+      <Dependent Role="MealCount">
+        <PropertyRef Name="messId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MealCount__userI__44FF419A">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="MealCount" Type="Self.MealCount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="MealCount">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MealDepos__messI__47DBAE45">
+    <End Role="Mess" Type="Self.Mess" Multiplicity="0..1" />
+    <End Role="MealDeposit" Type="Self.MealDeposit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mess">
+        <PropertyRef Name="messId" />
+      </Principal>
+      <Dependent Role="MealDeposit">
+        <PropertyRef Name="messId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MealDepos__userI__48CFD27E">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="MealDeposit" Type="Self.MealDeposit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="MealDeposit">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__User__messId__3D5E1FD2">
+    <End Role="Mess" Type="Self.Mess" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mess">
+        <PropertyRef Name="messId" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="messId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MessEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Admins" EntityType="Self.Admin" />
+    <EntitySet Name="Costs" EntityType="Self.Cost" />
+    <EntitySet Name="InventoryAssignments" EntityType="Self.InventoryAssignment" />
+    <EntitySet Name="Managers" EntityType="Self.Manager" />
+    <EntitySet Name="MealCounts" EntityType="Self.MealCount" />
+    <EntitySet Name="MealDeposits" EntityType="Self.MealDeposit" />
+    <EntitySet Name="Messes" EntityType="Self.Mess" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="UtilityBills" EntityType="Self.UtilityBill" />
+    <AssociationSet Name="FK__Cost__messId__4BAC3F29" Association="Self.FK__Cost__messId__4BAC3F29">
+      <End Role="Mess" EntitySet="Messes" />
+      <End Role="Cost" EntitySet="Costs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Cost__userId__4CA06362" Association="Self.FK__Cost__userId__4CA06362">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Cost" EntitySet="Costs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UtilityBi__costI__534D60F1" Association="Self.FK__UtilityBi__costI__534D60F1">
+      <End Role="Cost" EntitySet="Costs" />
+      <End Role="UtilityBill" EntitySet="UtilityBills" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Inventory__messI__4F7CD00D" Association="Self.FK__Inventory__messI__4F7CD00D">
+      <End Role="Mess" EntitySet="Messes" />
+      <End Role="InventoryAssignment" EntitySet="InventoryAssignments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Inventory__userI__5070F446" Association="Self.FK__Inventory__userI__5070F446">
+      <End Role="User" EntitySet="Users" />
+      <End Role="InventoryAssignment" EntitySet="InventoryAssignments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Manager__messId__412EB0B6" Association="Self.FK__Manager__messId__412EB0B6">
+      <End Role="Mess" EntitySet="Messes" />
+      <End Role="Manager" EntitySet="Managers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MealCount__messI__440B1D61" Association="Self.FK__MealCount__messI__440B1D61">
+      <End Role="Mess" EntitySet="Messes" />
+      <End Role="MealCount" EntitySet="MealCounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MealCount__userI__44FF419A" Association="Self.FK__MealCount__userI__44FF419A">
+      <End Role="User" EntitySet="Users" />
+      <End Role="MealCount" EntitySet="MealCounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MealDepos__messI__47DBAE45" Association="Self.FK__MealDepos__messI__47DBAE45">
+      <End Role="Mess" EntitySet="Messes" />
+      <End Role="MealDeposit" EntitySet="MealDeposits" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MealDepos__userI__48CFD27E" Association="Self.FK__MealDepos__userI__48CFD27E">
+      <End Role="User" EntitySet="Users" />
+      <End Role="MealDeposit" EntitySet="MealDeposits" />
+    </AssociationSet>
+    <AssociationSet Name="FK__User__messId__3D5E1FD2" Association="Self.FK__User__messId__3D5E1FD2">
+      <End Role="Mess" EntitySet="Messes" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

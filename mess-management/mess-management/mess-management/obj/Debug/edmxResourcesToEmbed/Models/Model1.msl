@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MessModelStoreContainer" CdmEntityContainer="MessEntities1">
+    <EntitySetMapping Name="Admins">
+      <EntityTypeMapping TypeName="MessModel.Admin">
+        <MappingFragment StoreEntitySet="Admin">
+          <ScalarProperty Name="adminId" ColumnName="adminId" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="email" ColumnName="email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Costs">
+      <EntityTypeMapping TypeName="MessModel.Cost">
+        <MappingFragment StoreEntitySet="Cost">
+          <ScalarProperty Name="costId" ColumnName="costId" />
+          <ScalarProperty Name="messId" ColumnName="messId" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="totalCost" ColumnName="totalCost" />
+          <ScalarProperty Name="date" ColumnName="date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InventoryAssignments">
+      <EntityTypeMapping TypeName="MessModel.InventoryAssignment">
+        <MappingFragment StoreEntitySet="InventoryAssignment">
+          <ScalarProperty Name="iaId" ColumnName="iaId" />
+          <ScalarProperty Name="messId" ColumnName="messId" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="date" ColumnName="date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Managers">
+      <EntityTypeMapping TypeName="MessModel.Manager">
+        <MappingFragment StoreEntitySet="Manager">
+          <ScalarProperty Name="managerId" ColumnName="managerId" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="messId" ColumnName="messId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MealCounts">
+      <EntityTypeMapping TypeName="MessModel.MealCount">
+        <MappingFragment StoreEntitySet="MealCount">
+          <ScalarProperty Name="mealId" ColumnName="mealId" />
+          <ScalarProperty Name="messId" ColumnName="messId" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="mealNum" ColumnName="mealNum" />
+          <ScalarProperty Name="date" ColumnName="date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MealDeposits">
+      <EntityTypeMapping TypeName="MessModel.MealDeposit">
+        <MappingFragment StoreEntitySet="MealDeposit">
+          <ScalarProperty Name="depositId" ColumnName="depositId" />
+          <ScalarProperty Name="messId" ColumnName="messId" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="date" ColumnName="date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Messes">
+      <EntityTypeMapping TypeName="MessModel.Mess">
+        <MappingFragment StoreEntitySet="Mess">
+          <ScalarProperty Name="messId" ColumnName="messId" />
+          <ScalarProperty Name="messName" ColumnName="messName" />
+          <ScalarProperty Name="messLocation" ColumnName="messLocation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="MessModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="messId" ColumnName="messId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UtilityBills">
+      <EntityTypeMapping TypeName="MessModel.UtilityBill">
+        <MappingFragment StoreEntitySet="UtilityBill">
+          <ScalarProperty Name="utilityId" ColumnName="utilityId" />
+          <ScalarProperty Name="utilityName" ColumnName="utilityName" />
+          <ScalarProperty Name="utilityDate" ColumnName="utilityDate" />
+          <ScalarProperty Name="cost" ColumnName="cost" />
+          <ScalarProperty Name="costId" ColumnName="costId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
