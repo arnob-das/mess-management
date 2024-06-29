@@ -73,3 +73,4 @@ CREATE TABLE UtilityBill (
     costId INT,
     FOREIGN KEY (costId) REFERENCES Cost(costId)
 );
+select * from Manager;

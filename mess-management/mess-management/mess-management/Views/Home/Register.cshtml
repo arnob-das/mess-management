@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Tuple<mess_management.Models.User, mess_management.Models.Manager>
+@{
     ViewBag.Title = "Register";
     Layout = null;
 }
@@ -17,49 +18,67 @@
     </div>
     <div class="register-container">
         <h2>Register</h2>
-        <form method="post" action="@Url.Action("Register", "Account")">
+        @using (Html.BeginForm("RegisterUser", "Home", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
             <div class="form-group">
                 <label for="fullname">Full Name:</label>
-                <input type="text" id="fullname" name="fullname" required>
+                @Html.TextBoxFor(m => m.Item1.FullName, new { @id = "fullname", @class = "form-control", required = "required" })
+                @Html.ValidationMessageFor(m => m.Item1.FullName)
             </div>
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
+                @Html.TextBoxFor(m => m.Item1.Email, new { @id = "email", type = "email", @class = "form-control", required = "required" })
+                @Html.ValidationMessageFor(m => m.Item1.Email)
             </div>
             <div class="form-group">
                 <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
+                @Html.PasswordFor(m => m.Item1.Password, new { @id = "password", @class = "form-control", required = "required" })
+                @Html.ValidationMessageFor(m => m.Item1.Password)
             </div>
             <div class="form-group">
                 <label for="nid">NID Number:</label>
-                <input type="text" id="nid" name="nid" required>
+                @Html.TextBoxFor(m => m.Item1.NID, new { @id = "nid", @class = "form-control", required = "required" })
+                @Html.ValidationMessageFor(m => m.Item1.NID)
             </div>
             <div class="form-group">
                 <label for="phone">Phone Number:</label>
-                <input type="text" id="phone" name="phone" required>
+                @Html.TextBoxFor(m => m.Item1.Phone, new { @id = "phone", @class = "form-control", required = "required" })
+                @Html.ValidationMessageFor(m => m.Item1.Phone)
             </div>
             <div class="form-group">
                 <label for="role">Register as:</label>
-                <select id="role" name="role" required>
-                    <option value="User">User</option>
-                    <option value="Manager">Manager</option>
-                </select>
+                @Html.DropDownList("role", new SelectList(new[]
+                {
+                    new SelectListItem { Text = "User", Value = "User" },
+                    new SelectListItem { Text = "Manager", Value = "Manager" }
+                }, "Value", "Text"), new { @id = "role", @class = "form-control", required = "required" })
             </div>
-            <div class="form-group" id="messId-group">
-                <label for="messId">Mess ID:</label>
-                <input type="text" id="messId" name="messId">
+
+            <div id="managerFields" style="display:none;">
+                <div class="form-group">
+                    <label for="messId">Mess ID:</label>
+                    @Html.TextBoxFor(m => m.Item2.MessId, new { @id = "messId", @class = "form-control" })
+                </div>
             </div>
-            <button type="submit">Register</button>
-        </form>
+
+            <button type="submit" class="btn btn-primary">Register</button>
+        }
     </div>
+
     <script>
-        document.getElementById('role').addEventListener('change', function () {
-            var messIdGroup = document.getElementById('messId-group');
-            if (this.value === 'Manager') {
-                messIdGroup.style.display = 'none';
-            } else {
-                messIdGroup.style.display = 'block';
-            }
+        document.addEventListener('DOMContentLoaded', function () {
+            var roleSelect = document.getElementById('role');
+            var managerFields = document.getElementById('managerFields');
+
+            roleSelect.addEventListener('change', function () {
+                if (roleSelect.value === 'Manager') {
+                    managerFields.style.display = 'block';
+                } else {
+                    managerFields.style.display = 'none';
+                }
+            });
         });
     </script>
 </body>
