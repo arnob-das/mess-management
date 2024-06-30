@@ -10,35 +10,88 @@
     <title>@ViewBag.Title</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
+        body {
+            background-color: #f8f9fa; /* Light background color for the entire page */
+        }
+
         .navbar-custom {
             background-color: blue !important;
         }
 
             .navbar-custom .navbar-brand {
-                color: blue !important;
+                color: white !important;
             }
 
             .navbar-custom .nav-link {
-                color: black !important;
+                color: white !important;
                 margin-left: 10px;
                 padding: 8px 16px;
                 border-radius: 4px;
             }
 
-        .banner-img {
-            width: 100%;
+        .container {
+            display: flex;
             height: 100vh;
-            object-fit: cover;
         }
+
+        .image-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+            .image-container img {
+                max-width: 100%;
+                max-height: 100%;
+            }
+
+        .content-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffffff; /* Light background color for the content container */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+            .content-container h4 {
+                margin-bottom: 20px;
+            }
+
+            .content-container button {
+                background-color: green;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+                .content-container button:hover {
+                    background-color: darkgreen;
+                }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="@Url.Action("Index", "Home")">Home</a>
-        <a class="navbar-brand" href="@Url.Action("Login", "Home")">Login</a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-custom">
+        <a class="navbar-brand" href="#">Mess Management System</a>
+        <div class="ml-auto">
+            <a class="navbar-brand" href="@Url.Action("Index", "Home")">Home</a>
+            <a class="navbar-brand" href="@Url.Action("Login", "Home")">Login</a>
+        </div>
     </nav>
-    <div class="container text-center mt-5">
-        <img src="~/Content/images/Screenshot_11.png" alt="Banner Image" class="img-fluid">
+    <div class="container">
+        <div class="image-container">
+            <img src="~/Content/images/mess-management-system.png" alt="Banner Image" class="img-fluid">
+        </div>
+        <div class="content-container">
+            <h4>Simple use, save time</h4>
+            <button>Join now</button>
+        </div>
     </div>
 </body>
 </html>
