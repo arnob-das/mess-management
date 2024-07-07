@@ -22,7 +22,7 @@ namespace mess_management.Controllers
         {
             return View();
         }
-
+        
         // GET: /Home/Register
         public ActionResult Register()
         {

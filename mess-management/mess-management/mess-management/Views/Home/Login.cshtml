@@ -20,22 +20,22 @@
             margin: 0;
         }
 
-        .navbar {
+        .navbar-custom {
             width: 100%;
-            background-color: #343a40;
+            background-color: navy !important;
             padding: 10px 0;
             display: flex;
             justify-content: flex-end;
         }
 
-            .navbar a {
-                color: white;
+            .navbar-custom .navbar-brand {
+                color: white !important;
                 padding: 10px 20px;
                 text-decoration: none;
                 font-size: 16px;
             }
 
-                .navbar a:hover {
+                .navbar-custom .navbar-brand:hover {
                     background-color: #495057;
                 }
 
@@ -103,9 +103,11 @@
     </style>
 </head>
 <body class="login-page">
-    <div class="navbar">
-        <a href="@Url.Action("Index", "Home")">Home</a>
-        <a href="@Url.Action("Login", "Home")">Login</a>
+    <div class="navbar-custom">
+        <a class="navbar-brand" href="#">Mess Management System</a>
+        <a class="navbar-brand" href="@Url.Action("Index", "Home")">Home</a>
+        <a class="navbar-brand" href="@Url.Action("Login", "Home")">Login</a>
+        <a class="navbar-brand" href="@Url.Action("Index", "UserDashBoard")">UserDashboard</a>
     </div>
     <div class="login-container">
         <h2>Login</h2>
